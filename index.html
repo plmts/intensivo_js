@@ -16,21 +16,36 @@
 </head>
 
 <body>
+  <section id="carrinho-frete" class="fixed top-0 right-[-360px] bg-indigo-950 h-screen w-[15rem] text-slate-200">
+
+    <div id="cabecalho-carrinho" class="mx-1 flex justify-between">
+      <p>Meu Frete</p>
+      <button id="fechar-carrinho"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <section id="produtos-carrinho">
+      <p>Reboque</p>
+      <p>Baú fechado</p>
+    </section>
+
+    <p id="preco-total">R$ 600,00</p>
+    <button class="bg-slate-200 text-slate-900 p-1">Finalizar Compra</button>
+  </section>
+
 <header class="flex h-20 bg-indigo-950 justify-between">
   <img src="./img/logo.jpg" alt="Logo Frete">
   <div class="text-slate-200 flex gap-2 items-end mx-2">
     <button><i class="fa-solid fa-house"></i></button>
-    <button ><i class="fa-solid fa-truck"></i></button>
+    <button id="abrir-carrinho"><i class="fa-solid fa-truck"></i></button>
     <button><i class="fa-solid fa-user"></i></button>
     <button><i class="fa-solid fa-right-from-bracket"></i></button>
   </div>
 </header>
 
 <main>
-  <section id="conteiner-produto" class="flex flex-wrap">
-  </section>
+  <section id="conteiner-produto" class="flex flex-wrap"></section>
 </main>
 
-<script src="./main.js"></script>
+<script type="module" src="./main.js"></script>
 </body>
 </html>
