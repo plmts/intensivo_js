@@ -28,7 +28,7 @@ for (const produtoCatalogo of catalogo) {
   <img class="rounded-full" src="/img/${produtoCatalogo.nomeArquivoImagem}" alt="${produtoCatalogo.nome}" style="height: 300px;">
   <p class="nome text-red-400">${produtoCatalogo.nome}</p>
   <p class="text-amber-200">Valor: R$ ${produtoCatalogo.preco}</p>
-  <button class="bg-transparent hover:bg-amber-200 text-lime-400 font-semibold hover:text-white py-2 px-4 border border-sky-500 hover:border-transparent rounded">Entrar em contato</button>
+  <button class="bg-lime-200 hover:bg-slate-200 text-slate-2 font-semibold hover:text-black py-2 px-4 border border-sky-500  rounded">Adicionar</button>
   <br><br>
   </div>`
   
