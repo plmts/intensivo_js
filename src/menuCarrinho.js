@@ -19,8 +19,8 @@ export function inicializarCarrinho() {
 }
 
 export function adicionarAoCarrinho(){
-  const conteinerProdutoCarrinho = getElementById("produtos-carrinho");
-  const cartaoProdutoCarrinho = `      <article class="bg-slate-200 text-black rounded-lg p-1">
+  const conteinerProdutoCarrinho = document.getElementById("produtos-carrinho");
+  const cartaoProdutoCarrinho = `<article class="bg-slate-200 text-black rounded-lg p-1">
   <button class="text-red-500 hover:bg-red-400 hover:text-slate-200 rounded-full" id="fechar-carrinho"><i class="fa-solid fa-xmark"></i></button>
   <div class="flex justify-between" id="card-1">
   <div>
@@ -35,5 +35,5 @@ export function adicionarAoCarrinho(){
   </div>          
   </div>
   </article>`; 
-  conteinerProdutoCarrinho.innerHTML += cartaoProdutoCarrinho
+  conteinerProdutoCarrinho.innerHTML += cartaoProdutoCarrinho;
 }
