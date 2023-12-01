@@ -14,6 +14,6 @@ export function renderizarCartalogo() {
     document.getElementById("conteiner-produto").innerHTML += cartaoProduto;
   }
   for (const produtoCatalogo of catalogo) {
-    document.getElementById(`adicionar-${produtoCatalogo.id}`).addEventListener('click', adicionarAoCarrinho)
+    document.getElementById(`adicionar-${produtoCatalogo.id}`).addEventListener('click', () => adicionarAoCarrinho(produtoCatalogo.id))
   }
 }
