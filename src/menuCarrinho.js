@@ -1,7 +1,7 @@
 //Importações
 import { catalogo } from "./utilidades";
 
-
+const idsProdutoCarrinhoComQuantidade = {}
 
 //Funções
 function abrirCarrinho() {
@@ -22,7 +22,27 @@ export function inicializarCarrinho() {
   botaoAbrirCarrinho.addEventListener("click", abrirCarrinho);
 }
 
+function incrementarQuantidadeProduto(idProduto){
+  idsProdutoCarrinhoComQuantidade[idProduto]++;
+  atualizarInformacaoQuantidade(idProduto);
+}
+
+function decrementarQuantidadeProduto(idProduto){
+  idsProdutoCarrinhoComQuantidade[idProduto]--;
+  atualizarInformacaoQuantidade(idProduto)
+}
+
+function atualizarInformacaoQuantidade(idProduto){
+  document.getElementById(`quantidade${idProduto}`).innerText = idsProdutoCarrinhoComQuantidade[idProduto];
+}
+
 export function adicionarAoCarrinho(idProduto){
+    if (idProduto in idsProdutoCarrinhoComQuantidade){
+      incrementarQuantidadeProduto(idProduto);
+      return
+    }
+
+  idsProdutoCarrinhoComQuantidade[idProduto] = 1;
   const  produto = catalogo.find((p) => p.id === idProduto);
   const conteinerProdutoCarrinho = document.getElementById("produtos-carrinho");
   const cartaoProdutoCarrinho = `<article class="bg-slate-200 text-black rounded-lg p-1">
@@ -35,10 +55,10 @@ export function adicionarAoCarrinho(idProduto){
   </div>
   <div class="bg-slate-700 text-slate-100 justify-between w-[2rem] p-[0.7rem] flex flex-wrap justify-between">
     <button class="bg-lime-200 rounded-full text-black"><i class="fa-solid fa-plus"></i></button>
-    <p>5</p>
+    <p id='quantidade${produto.id}'>${idsProdutoCarrinhoComQuantidade[produto.id]}</p>
     <button class="bg-red-200 text-black rounded-full"><i class="fa-solid fa-minus"></i></button>
   </div>          
   </div>
-  </article>`; 
+  </article><br>`; 
   conteinerProdutoCarrinho.innerHTML += cartaoProdutoCarrinho;
 }

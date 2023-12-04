@@ -1,7 +1,7 @@
-import { catalogo } from "./utilidades"
-import { adicionarAoCarrinho } from "./menuCarrinho"
+import { catalogo } from "./utilidades";
+import { adicionarAoCarrinho } from "./menuCarrinho";
 
-export function renderizarCartalogo() {
+export function renderizarCatalogo() {
   for (const produtoCatalogo of catalogo) {
     const cartaoProduto =    ` <div class="rounded-lg border-4 border-sky-300 w-96 m-3 mx-8 p-3 flex flex-col group" id="card-produto-${produtoCatalogo.id}">
     <img class="rounded-full" src="/img/${produtoCatalogo.nomeArquivoImagem}" alt="${produtoCatalogo.nome}" style="height: 300px;">

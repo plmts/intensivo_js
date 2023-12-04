@@ -1,6 +1,6 @@
 // IMPORTAÇÕES
-import { renderizarCartalogo } from "./src/cartaoProduto";
+import { renderizarCatalogo } from "./src/cartaoProduto";
 import { inicializarCarrinho } from "./src/menuCarrinho"
 
-renderizarCartalogo();
+renderizarCatalogo();
 inicializarCarrinho();
