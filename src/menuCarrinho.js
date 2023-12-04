@@ -22,6 +22,14 @@ export function inicializarCarrinho() {
   botaoAbrirCarrinho.addEventListener("click", abrirCarrinho);
 }
 
+function renderizarProdutosCarrinho() {
+  
+}
+
+function removerDoCarrinho(idProduto){
+  delete idsProdutoCarrinhoComQuantidade(idProduto);
+}
+
 function incrementarQuantidadeProduto(idProduto){
   idsProdutoCarrinhoComQuantidade[idProduto]++;
   atualizarInformacaoQuantidade(idProduto);
@@ -36,13 +44,7 @@ function atualizarInformacaoQuantidade(idProduto){
   document.getElementById(`quantidade${idProduto}`).innerText = idsProdutoCarrinhoComQuantidade[idProduto];
 }
 
-export function adicionarAoCarrinho(idProduto){
-    if (idProduto in idsProdutoCarrinhoComQuantidade){
-      incrementarQuantidadeProduto(idProduto);
-      return
-    }
-  idsProdutoCarrinhoComQuantidade[idProduto] = 1;
-
+function desenharProdutoCarrinho(idProduto){
   const  produto = catalogo.find((p) => p.id === idProduto);
   const conteinerProdutoCarrinho = document.getElementById("produtos-carrinho");
 
@@ -69,4 +71,13 @@ export function adicionarAoCarrinho(idProduto){
 
   document.getElementById(`decrementar-produto-${produto.id}`).addEventListener('click',() => decrementarQuantidadeProduto(produto.id));
   document.getElementById(`incrementar-produto-${produto.id}`).addEventListener('click',() => incrementarQuantidadeProduto(produto.id));
+}
+
+export function adicionarAoCarrinho(idProduto){
+    if (idProduto in idsProdutoCarrinhoComQuantidade){
+      incrementarQuantidadeProduto(idProduto);
+      return
+    }
+  idsProdutoCarrinhoComQuantidade[idProduto] = 1;
+  desenharProdutoCarrinho(idProduto);
 }
