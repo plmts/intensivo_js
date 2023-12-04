@@ -54,11 +54,14 @@ export function adicionarAoCarrinho(idProduto){
   <p class="text-slate-500 text-xs">$ ${produto.preco}</p>  
   </div>
   <div class="bg-slate-700 text-slate-100 justify-between w-[2rem] p-[0.7rem] flex flex-wrap justify-between">
-    <button class="bg-lime-200 rounded-full text-black"><i class="fa-solid fa-plus"></i></button>
+    <button id='incrementar-produto-${produto.id}' class="bg-lime-200 rounded-full text-black"><i class="fa-solid fa-plus"></i></button>
     <p id='quantidade${produto.id}'>${idsProdutoCarrinhoComQuantidade[produto.id]}</p>
-    <button class="bg-red-200 text-black rounded-full"><i class="fa-solid fa-minus"></i></button>
+    <button id='decrementar-produto-${produto.id}' class="bg-red-200 text-black rounded-full"><i class="fa-solid fa-minus"></i></button>
   </div>          
   </div>
   </article><br>`; 
   conteinerProdutoCarrinho.innerHTML += cartaoProdutoCarrinho;
+
+  document.getElementById(`decrementar-produto-${produto.id}`).addEventListener('click',() => decrementarQuantidadeProduto(produto.id));
+  document.getElementById(`incrementar-produto-${produto.id}`).addEventListener('click',() => incrementarQuantidadeProduto(produto.id));
 }
