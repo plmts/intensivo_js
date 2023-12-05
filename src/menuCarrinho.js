@@ -1,7 +1,8 @@
 //Importações
-import { catalogo } from "./utilidades";
+import { catalogo, salvarLocalStorage, lerLocalStorage } from "./utilidades";
 
-const idsProdutoCarrinhoComQuantidade = {};
+// objetos
+const idsProdutoCarrinhoComQuantidade = lerLocalStorage('carrinho') ?? {}; // as ?? servem para quando o valor estiver vazio, que está faltando dados, jogará o dado da direita
 
 
 //Funções
@@ -30,6 +31,7 @@ export function inicializarCarrinho() {
 //REMOVER DO CARRINHO
 function removerDoCarrinho(idProduto){
   delete idsProdutoCarrinhoComQuantidade[idProduto];
+  salvarLocalStorage("carrinho", idsProdutoCarrinhoComQuantidade);
   atualizarPrecoCarrinho();
   renderizarProdutosCarrinho();
 }
@@ -37,6 +39,7 @@ function removerDoCarrinho(idProduto){
 //INCREMENTAR QUANTIDADE DOS PRODUTOS
 function incrementarQuantidadeProduto(idProduto){
   idsProdutoCarrinhoComQuantidade[idProduto]++;
+  salvarLocalStorage("carrinho", idsProdutoCarrinhoComQuantidade);
   atualizarPrecoCarrinho();
   atualizarInformacaoQuantidade(idProduto);
 }
@@ -48,6 +51,7 @@ function decrementarQuantidadeProduto(idProduto){
     return;
   }
   idsProdutoCarrinhoComQuantidade[idProduto]--;
+  salvarLocalStorage("carrinho", idsProdutoCarrinhoComQuantidade);
   atualizarPrecoCarrinho()
   atualizarInformacaoQuantidade(idProduto)
 }
@@ -75,9 +79,9 @@ function desenharProdutoCarrinho(idProduto){
   <p class="text-slate-500 text-xs">$ ${produto.preco}</p>  
   </div>
   <div class="bg-slate-700 text-slate-100 justify-between w-[2rem] p-[0.7rem] flex flex-wrap justify-between">
-    <button id='incrementar-produto-${produto.id}' class="bg-lime-200 rounded-full text-black"><i class="fa-solid fa-plus"></i></button>
+    <button id='incrementar-produto-${produto.id}' class="bg-lime-200 hover:bg-lime-100 rounded-full text-black"><i class="fa-solid fa-plus"></i></button>
     <p id='quantidade${produto.id}'>${idsProdutoCarrinhoComQuantidade[produto.id]}</p>
-    <button id='decrementar-produto-${produto.id}' class="bg-red-200 text-black rounded-full"><i class="fa-solid fa-minus"></i></button>
+    <button id='decrementar-produto-${produto.id}' class="bg-red-200 text-black hover:bg-red-100 rounded-full"><i class="fa-solid fa-minus"></i></button>
   </div>          
   </div><br>`; 
   elementoArticle.innerHTML = cartaoProdutoCarrinho;
@@ -90,7 +94,7 @@ function desenharProdutoCarrinho(idProduto){
 }
 
 //RENDERIZAR PRODUTO NO CARRINHO
-function renderizarProdutosCarrinho() {
+export function renderizarProdutosCarrinho() {
   const conteinerProdutoCarrinho = document.getElementById("produtos-carrinho");
   conteinerProdutoCarrinho.innerHTML = "";
   for (const idProduto in idsProdutoCarrinhoComQuantidade){
@@ -105,11 +109,12 @@ export function adicionarAoCarrinho(idProduto){
     return
   }
   idsProdutoCarrinhoComQuantidade[idProduto] = 1;
+  salvarLocalStorage("carrinho", idsProdutoCarrinhoComQuantidade);
   desenharProdutoCarrinho(idProduto);
 }
 
 // ATUALIZAR PREÇO DO CARRINHO
-function atualizarPrecoCarrinho() {
+export function atualizarPrecoCarrinho() {
   const precoCarrinho = document.getElementById('preco-total');
   let precoTotalCarrinho = 0;
   for (const idProdutoNoCarrinho in idsProdutoCarrinhoComQuantidade) {

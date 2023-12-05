@@ -18,3 +18,12 @@ export const catalogo = [
     nomeArquivoImagem: 'bau_fechado.jpg'
   },
 ]
+
+
+export function salvarLocalStorage(chave, informacao) {
+  localStorage.setItem(chave, JSON.stringify(informacao)); // pega a informação e transforma e texto para poder ser salvo na local storage
+}
+
+export function lerLocalStorage(chave) {
+  return JSON.parse(localStorage.getItem(chave)); // pega o texto entre parênteses e transforma em objeto
+}
